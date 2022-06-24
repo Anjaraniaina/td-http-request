@@ -32,32 +32,32 @@ export function EmployeeList(props) {
           <thead>
             <tr>
               <th>Name</th>
-              <th>Position</th>
-              <th>Office</th>
-              <th>Age</th>
-              <th>Start date</th>
-              <th>Salary</th>
+              <th>Username</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>City</th>
+              <th>Street</th>
             </tr>
           </thead>
           <tfoot>
             <tr>
               <th>Name</th>
-              <th>Position</th>
-              <th>Office</th>
-              <th>Age</th>
-              <th>Start date</th>
-              <th>Salary</th>
+              <th>Username</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>City</th>
+              <th>Street</th>
             </tr>
           </tfoot>
           <tbody>
             {(items || []).map((item) => (
               <tr key={item.name}>
                 <td>{item.name}</td>
-                <td>{item.position}</td>
-                <td>{item.office}</td>
-                <td>{item.age}</td>
-                <td>{item.startDate}</td>
-                <td>{item.salary}</td>
+                <td>{item.username}</td>
+                <td>{item.email}</td>
+                <td>{item.phone}</td>
+                <td>{item.address.city}</td>
+                <td>{item.address.street}</td>
               </tr>
             ))}
           </tbody>

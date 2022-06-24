@@ -5,18 +5,21 @@ import { Breadcrumb } from "./components/Breadcrumb";
 import { EmployeeList } from "./components/List";
 import { Footer } from "./components/Footer";
 import { Card } from "./components/Card";
-import { faker } from "@faker-js/faker";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { Modal } from './components/Modal/Modal';
+import axios from "axios";
+
 
 function App() {
-  const employees = new Array(15).fill(null).map((_) => ({
-    name: faker.name.findName(),
-    position: faker.company.bsNoun(),
-    office: faker.address.cityName(),
-    age: faker.random.numeric(2),
-    startDate: new Date().toISOString().split("T")[0],
-    salary: faker.random.numeric(6),
-  }));
+  const [employees, setEmployees] = useState([]);
+  useEffect(() => {
+    const promise = axios.get("https://jsonplaceholder.typicode.com/users");
+    promise
+        .then((response) => {
+          setEmployees(response.data);
+        })
+        
+  },[])
 
   const [sidebarClass, setSidebarClass] = useState("sb-nav-fixed");
 
@@ -44,7 +47,7 @@ function App() {
                 DataTables is a third party plugin that is used to generate the
                 demo table below. For more information about DataTables, please
                 visit the
-                <a target="_blank" href="https://datatables.net/">
+                <a href="https://datatables.net/">
                   official DataTables documentation
                 </a>
                 .
@@ -57,6 +60,8 @@ function App() {
           <Footer />
         </div>
       </div>
+      <Modal/>
+      
     </div>
   );
 }
