@@ -31,8 +31,12 @@ function App() {
     );
   }
 
+  const [open, setOpen] = useState(false);
+
   return (
     <div className={sidebarClass}>
+      {open && <Modal closeModal={setOpen} request={"Add"}/>}
+      {open && <Modal closeModal={setOpen} request={"Update"}/>}
       <Navbar toggleSidebarClass={toggleSidebarClass} />
       <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
@@ -42,6 +46,7 @@ function App() {
           <main>
             <div className="container-fluid px-4">
               <h1 className="mt-4">Tables</h1>
+              
               <Breadcrumb />
               <Card>
                 DataTables is a third party plugin that is used to generate the
@@ -52,6 +57,14 @@ function App() {
                 </a>
                 .
               </Card>
+              <button
+               className="my-3 mx-3 btn btn-primary"
+               onClick={() => {setOpen(true)}}>Add</button>
+              <button 
+               className="my-3 btn btn-primary"
+               onClick={() => {setOpen(true)}}
+               >Update</button>
+              
               <Card title="DataTable Example">
                 <EmployeeList items={employees} />
               </Card>
@@ -60,7 +73,7 @@ function App() {
           <Footer />
         </div>
       </div>
-      <Modal/>
+      
       
     </div>
   );
